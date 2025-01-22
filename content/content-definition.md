@@ -91,7 +91,9 @@ namespace OCBC.ProductModule.Models
         public string ChineseProductName { get; set; }
         public string Model { get; set; }
         public string Description { get; set; }
-        public string[] ProductImages { get; set; }
+        public MediaField ProductImage1 { get; set; }
+        public MediaField ProductImage2 { get; set; }
+        public MediaField ProductImage3 { get; set; }
     }
 }
 ```
@@ -185,9 +187,18 @@ namespace OCBC.ProductModule.Migrations
                     {
                         Hint = "Please provide a description"
                     }))
-                .WithField("ProductImages", field => field
+                .WithField("ProductImage1", field => field
                     .OfType("MediaField")
-                    .WithDisplayName("Product Images"))
+                    .WithDisplayName("Product Image 1")
+                    .WithPosition("Editor:1"))
+                .WithField("ProductImage2", field => field
+                    .OfType("MediaField")
+                    .WithDisplayName("Product Image 2")
+                    .WithPosition("Editor:1"))
+                .WithField("ProductImage3", field => field
+                    .OfType("MediaField")
+                    .WithDisplayName("Product Image 3")
+                    .WithPosition("Editor:1"))
             );
 
             return 1;

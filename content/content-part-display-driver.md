@@ -62,6 +62,8 @@ public sealed class Startup : StartupBase
 }
 ```
 
+After that, we can proceed to create a new display driver class for our Product Information Part called `ProductInformationPartDisplayDriver`. It can be placed in the `Drivers` folder in the module.
+
 ### Edit View
 
 For the display driver, we will setup the Edit part as follow.
@@ -170,7 +172,9 @@ public class ProductInformationPartDisplayDriver : ContentPartDisplayDriver<Prod
             part.ChineseProductName = viewModel.ChineseProductName;
             part.Model = viewModel.Model;
             part.Description = viewModel.Description;
-            part.ProductImages = viewModel.ProductImages;
+            part.ProductImage1 = viewModel.ProductImage1;
+            part.ProductImage2 = viewModel.ProductImage2;
+            part.ProductImage3 = viewModel.ProductImage3;
             
             var contentItem = part.ContentItem;
             contentItem.DisplayText = $"{viewModel.Model} - {viewModel.ProductName}";
@@ -315,8 +319,6 @@ We can customise them with CSS in the cshtml file so that the three MediaFields 
 We will then get the following UI for the Edit.
 
 <figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption><p>Updated UI for the Edit page of Product Information.</p></figcaption></figure>
-
-###
 
 ### Display View
 
