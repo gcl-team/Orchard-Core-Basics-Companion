@@ -76,7 +76,7 @@ public class ProductManagementController(IContentManager contentManager) : Contr
         };
 
         await contentManager.CreateAsync(contentItem, VersionOptions.Draft);
-            
+
         return Ok();
     }
 }
@@ -139,9 +139,9 @@ public async Task<IActionResult> UpdateSampleProductInformation(string contentIt
     contentItem.DisplayText += $" - Updated";
     contentItem.Content.ProductInformationPart.ProductName += " - Updated";
     contentItem.Content.ProductInformationPart.Description += $" This is updated at {DateTime.Now:yyyy-MM-dd HH:mm:ss}.";
-        
+
     await contentManager.UpdateAsync(contentItem);
-            
+
     return Ok();
 }
 ```
@@ -154,7 +154,7 @@ Unpublishing does not delete the published version but marks it as unavailable.
 
 The following code shows how we can publish or unpublish a content item depends on its publishing state.
 
-```
+```csharp
 [HttpGet("publish-unpublish-sample/{contentItemId}")]
 public async Task<IActionResult> PublishUnpublishSampleProductInformation(string contentItemId)
 {
@@ -168,12 +168,12 @@ public async Task<IActionResult> PublishUnpublishSampleProductInformation(string
     if (await contentManager.HasPublishedVersionAsync(contentItem))
     {
         await contentManager.UnpublishAsync(contentItem);
-    } 
+    }
     else
     {
         await contentManager.PublishAsync(contentItem);
     }
-            
+
     return Ok();
 }
 ```
@@ -237,7 +237,7 @@ Now, if we call `RemoveAsync` on it, both the `Latest` and `Published` flags wil
 At this moment, this content item is still queryable with the following code.
 
 ```csharp
-await orchard.QueryContentItemsAsync(q => 
+await orchard.QueryContentItemsAsync(q =>
             q.Where(c => c.ContentType == "ProductInformation"));
 ```
 
@@ -253,7 +253,7 @@ You may wonder, what if we use `DiscardDraft` on a published content item? The a
 
 Now, let's move on to a different content item which is a draft and is represented as the following JSON.
 
-```
+```json
 {
     "ContentItemId": "4mjy7gk6tcwmfyrjere6bt6k49",
     "ContentItemVersionId": "4nxd6rz5daeh6xj91yxrb8w05g",
@@ -269,7 +269,7 @@ Will using `RemoveAsync` on a draft throws an exception also? Nope, because what
 
 In fact, calling `DiscardDraft` on a draft will do the same as calling `RemoveAsync` on it because the outcome is always having both `Latest` and `Published` flag set to false.
 
-```
+```json
 {
     "ContentItemId": "4mjy7gk6tcwmfyrjere6bt6k49",
     "ContentItemVersionId": "4nxd6rz5daeh6xj91yxrb8w05g",

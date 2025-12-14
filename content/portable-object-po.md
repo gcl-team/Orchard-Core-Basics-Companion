@@ -54,7 +54,7 @@ Now, let's see how we can retrieve translated text from PO files in the controll
 
 For demo purpose, we will create the following endpoint in our Service API to return the Chinese translated text for `weather_Hot`.
 
-```
+```csharp
 [HttpGet("po")]
 public async Task<IActionResult> GetPortableObjectDemoInformation()
 {
@@ -81,7 +81,7 @@ If we are going to inject IStringLocalizer in our services in order to get the t
 
 Let's take an example of injecting IStringLocalizer to the following `DemoService`.
 
-```
+```csharp
 using System.Globalization;
 using Microsoft.Extensions.Localization;
 
@@ -149,9 +149,9 @@ For consistent behaviour and better performance, always configure `DefaultReques
 ```csharp
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
-    var supportedCultures = new[] { 
-        new CultureInfo("en-GB"), 
-        new CultureInfo("zh-CN") 
+    var supportedCultures = new[] {
+        new CultureInfo("en-GB"),
+        new CultureInfo("zh-CN")
     };
 
     options.DefaultRequestCulture = new RequestCulture("en-GB");
