@@ -79,7 +79,7 @@ The `userId` and `userName` in the sample above refer to the demo Admin account 
 
 For the `VersionNumber`, if the `Versionable` is not enabled in the option of the content type, it should always be `1`. Otherwise, we can use the following to retrieve the current version of a content item.
 
-```
+```csharp
 int version = (await contentManager.GetAllVersionsAsync(contentItemId)).Count();
 ```
 

@@ -6,7 +6,7 @@ In the initial setup, Orchard Core Recipes allow us to set up roles and permissi
 
 The `"name": "Roles"` step is specifically designed to set up roles in the system.
 
-```
+```json
 {
   ...
   "steps": [
